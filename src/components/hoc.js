@@ -2,8 +2,6 @@ import React from 'react';
 
 function withHOC(Component) {
 
-
-
     return class FormWrapper extends React.Component {
 
         constructor(props) {
@@ -13,11 +11,6 @@ function withHOC(Component) {
             }, {});
         }
 
-        handleSubmit = (e) => {
-            e.preventDefault();
-            console.log(this.state);
-        }
-
         handleChange = (e) => {
             this.setState({
                 [e.target.name]: e.target.value
@@ -25,16 +18,8 @@ function withHOC(Component) {
         }
 
         render() {
-
-            var { field } = this.props;
-
             return (
-                <form onSubmit={this.handleSubmit}>
-                    {field.map(input => {
-                        return <input onChange={this.handleChange} key={input.name} type={input.type} name={input.name} />
-                    })}
-                    <button type="submit">Submit</button>
-                </form>
+                <Component state={this.state} field={this.props.field} change={this.handleChange} />
             );
 
         }
