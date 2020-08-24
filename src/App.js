@@ -1,11 +1,46 @@
 import React from 'react';
-import './App.css';
 
-function App({ title }) { // props
-  // JS expression 10 20 20+30 getName()
+import SignUp from './components/sign-up';
+import SignIn from './components/sign-in';
+
+var signIn = [
+  {
+    type: 'text',
+    name: 'username'
+  },
+  {
+    type: 'password',
+    name: 'password'
+  }
+];
+
+var signUp = [
+  {
+    type: 'text',
+    name: 'name'
+  },
+  {
+    type: 'text',
+    name: 'username'
+  },
+  {
+    type: 'password',
+    name: 'password'
+  }
+]
+
+function App() {
   return (
-    <h1>{title}</h1>
+    <div>
+      <h3>SignUp</h3>
+      <SignUp field={signUp} />
+      <br />
+      <br />
+      <h3>SignIn</h3>
+      <SignIn field={signIn} />
+    </div>
   );
 }
+
 
 export default App;
