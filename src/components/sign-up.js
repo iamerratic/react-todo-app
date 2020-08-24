@@ -1,11 +1,26 @@
 import React from 'react';
 
+import FormRenderProps from './render';
 
-import withHOC from './hoc';
+function SignUp({ field }) {
 
-function SignUp(props) {
+    function handleSubmit(event, state) {
+        event.preventDefault();
+        console.log(state);
+    }
 
-    return <div></div>;
+    return (
+        <FormRenderProps field={field} render={function (state, change) {
+            return <form onSubmit={function (event) {
+                handleSubmit(event, state);
+            }}>
+                {field.map(input => {
+                    return <input onChange={change} key={input.name} type={input.type} name={input.name} />
+                })}
+                <button type="submit">Submit</button>
+            </form>
+        }} />
+    );
 }
 
-export default withHOC(SignUp);
+export default SignUp;
